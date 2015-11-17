@@ -1,4 +1,4 @@
-package s3.td5recur;
+package s3.td6recur;
 
 public class test {
     public static void main(String[]args){

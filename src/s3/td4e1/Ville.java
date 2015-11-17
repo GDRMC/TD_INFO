@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package s3.td4ex2;
-
-import java.util.ArrayList;
+package s3.td4e1;
 
 /**
  *
  * @author USER
  */
-public class ArrayListEtud extends ArrayList{
+public class Ville extends Commune {
     
-    ArrayListEtud(){
-        super();
+    private String monument;
+    
+    Ville(int nbh, double s, String n){
+        super(nbh,s);
+        this.monument = n;
     }
     
-    public void add(int i, Object e){
-        super.add(i, e);
+    public double ratio(){
+        return super.ratio();
     }
-    
 }
