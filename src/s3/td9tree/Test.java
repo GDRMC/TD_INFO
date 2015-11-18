@@ -15,5 +15,8 @@ public class Test{
         System.out.println(tree1.lePlusADroite());
         System.out.println(tree1.nbFeuille());
         tree1.afficheGRD();
+        Arbre tree2 = tree1.supprimer("B");
+        System.out.println();
+        tree2.afficheGRD();
     }
 }

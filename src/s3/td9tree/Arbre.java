@@ -16,7 +16,7 @@ public abstract class Arbre {
     public abstract String lePlusAGauche();
     public abstract String lePlusADroite();
     
-    //supprimer
+    public abstract Arbre supprimer(String valeur);
     
     public abstract boolean trouver(String element);
     
@@ -38,69 +38,60 @@ class ArbreVide extends Arbre {
     ArbreVide(){ }
     
     public void afficheGRD(){
-        //System.out.println("Vide");
+        //System.out.println("");
     }
     
     public int nbFeuille(int nb){
         return nb;
     }
 
-    @Override
     public String getRacine() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
-    @Override
     public Arbre getAg() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArbreVide();
     }
 
-    @Override
     public Arbre getAd() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArbreVide();
     }
 
-    @Override
     public void setRacine(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
-    @Override
     public void setAg(Arbre Ag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
-    @Override
     public void setAd(Arbre Ad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
-    @Override
     public String lePlusAGauche() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
-    @Override
     public String lePlusADroite() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
-    @Override
     public boolean trouver(String element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
-    @Override
     public boolean estFeuille() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
-    @Override
     public int nbFeuille() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
     
-    
+    public Arbre supprimer(String valeur){
+        return new ArbreVide();
+    }
 }
 
 class ArbreCons extends Arbre {
@@ -187,6 +178,20 @@ class ArbreCons extends Arbre {
             return this.getAd().getRacine();
         } else {
             return this.getAd().lePlusADroite();
+        }
+    }
+    
+    public Arbre supprimer(String valeur){
+        if(this.getRacine().equals(valeur)){
+            //si la racine est égale à la valeur recherchée, supprime la valeur et la remplace par l'élément le plus à gauche
+            if(this.getAg().estVide()){
+                return this.getAd();
+            }
+            String valeur2 = this.lePlusAGauche();
+            return new ArbreCons(valeur2,this.getAg().supprimer(valeur2),this.getAd().supprimer(valeur2));
+        } else {
+            //si racine n'est pas égale à la valeur recherchée
+            return new ArbreCons(this.getRacine(),this.getAg().supprimer(valeur),this.getAd().supprimer(valeur));
         }
     }
 }
